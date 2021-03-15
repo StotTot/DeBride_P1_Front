@@ -170,7 +170,7 @@
             method: 'GET'
         }
         let decoded = parseJwt(localStorage.getItem('jwt'));
-        const httpResponse = await fetch(`http//34.121.205.4:7000/users/${uname.value}/requests/${ridInput.value}`, details);
+        const httpResponse = await fetch(`http://34.121.205.4:7000/users/${uname.value}/requests/${ridInput.value}`, details);
         const request = await httpResponse.json();
         const timeSub = new Date(request.submitted * 1000);
         const timeAppDen = new Date(request.approvedordenied * 1000);
