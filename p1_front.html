@@ -75,8 +75,8 @@
             <button type="button" class="btn btn-success" onclick="createRequest()">Create Request</button>
     
         </div>
-        <div class="urequestForm">
-            <h2>Update Request (MANAGERS ONLY)</h2>
+        <div id="updateRequestFill" class="urequestForm">
+            <!-- <h2>Update Request (MANAGERS ONLY)</h2>
     
             <label for="statusInput">Status</label>
             <input class="input-group-prepend" placeholder="Approved/Denied" id="statusInput" type="text">
@@ -86,7 +86,7 @@
             <input class="input-group-prepend"  id="ureasonInput" type="text">
             <hr>
     
-            <button type="button" class="btn btn-success" onclick="updateRequest()">Update Request</button>
+            <button type="button" class="btn btn-success" onclick="updateRequest()">Update Request</button> -->
         </div>
 
 
@@ -222,7 +222,25 @@
         let decoded = parseJwt(jwt);
 
         getRequestForId(decoded.id);
+        if(decoded.manFlag == true){
+            let htmlBody = `
+            <h2>Update Request (MANAGERS ONLY)</h2>
+    
+            <label for="statusInput">Status</label>
+            <input class="input-group-prepend" placeholder="Approved/Denied" id="statusInput" type="text">
+            <hr>
 
+            <label for="ureasonInput">Reason</label>
+            <input class="input-group-prepend"  id="ureasonInput" type="text">
+            <hr>
+
+            <button type="button" class="btn btn-success" onclick="updateRequest()">Update Request</button>
+            `
+
+            updateRequestFill.innerHTML = htmlBody;
+        }else{
+            updateRequestFill.innerHTML = ``;
+        }
         localStorage.setItem('jwt',jwt);
         console.log(localStorage.getItem('jwt'))
 
